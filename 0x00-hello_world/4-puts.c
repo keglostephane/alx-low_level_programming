@@ -1,13 +1,16 @@
 #include <stdio.h>
 
 /**
- * 4-puts - Print a message on screen
+ * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Description: Starts the program
+ *
+ * Return: successful execution (0), something else if error occur
  */
+
 int main(void)
 {
 	puts("\"Programming is like building a multilingual puzzle");
-	
-    return (0);
+
+	return (0);
 }
