@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+/**
+ * main - Entry point
+ *
+ * Description: Starts the program
+ *
+ * Return: successful execution (0), something else if error occur
+ */
+
+int main(void)
+{
+	printf("Size of a char: %zi", sizeof(char));
+	printf("Size of an int: ");
+	printf("Size of a long int:");
+	printf("Size of a long long int:");
+	printf("Size of a float:");
+
+	return (0);
+}
