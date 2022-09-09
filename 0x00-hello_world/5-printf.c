@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+/**
+ * main - Entry point
+ *
+ * Description: Starts the program
+ *
+ * Return: successful execution (0), something else if error occur
+ */
+
+int main(void)
+{
+	printf("with proper grammar, but the outcome is a piece of art,\n");
+
+	return (0);
+}
