@@ -10,7 +10,7 @@
  */
 int main(void)
 {
-	int i, j, first, last;
+	int i, j, k, first, last;
 
 	first = 48;
 
@@ -20,12 +20,17 @@ int main(void)
 	{
 		for (j = i + 1; j <= last; j++)
 		{
-			putchar(i);
-			putchar(j);
-			if (i == last - 1)
-				break;
-			putchar(44);
-			putchar(32);
+			for (k = j + 1; k <= last; k++)
+			{
+				putchar(i);
+				putchar(j);
+				putchar(k);
+				if (i == last - 2)
+					break;
+				putchar(44);
+				putchar(32);
+
+			}
 		}
 	}
 
