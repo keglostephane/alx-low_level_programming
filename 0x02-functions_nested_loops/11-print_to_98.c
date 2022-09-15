@@ -3,14 +3,14 @@
 
 /**
  * print_to_98 - Print Natural numbers from n to 98
- * @i : int, start number
+ * @n : int, start number
  *
  */
 void print_to_98(int n)
 {
 	int i;
 
-	if (n < 98)
+	if (n <= 98)
 	{
 		for (i = n; i <= 98; i++)
 		{
@@ -22,7 +22,7 @@ void print_to_98(int n)
 	}
 	else
 	{
-		for (i = n; i <= 98; i--)
+		for (i = n; i >= 98; i--)
 		{
 			printf("%d", i);
 			if (i == 98)
