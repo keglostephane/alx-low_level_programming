@@ -26,7 +26,13 @@ int _abs(int n)
  */
 int print_last_digit(int i)
 {
-	int d = _abs(i) % 10;
+	int d;
+
+	if (i < 0)
+		d = _abs(i) % 10;
+	else
+		d = i % 10;
+
 	_putchar(d + '0');
 	return (d);
 }
