@@ -18,20 +18,22 @@ char *_strncpy(char *dest, char *src, int n)
 	char *str = dest;
 	int i;
 
-	while (*dest != '\0')
-		dest++;
-
 	for (i = 0; i < n; i++)
 	{
-		if (*src == '\0')
-			break;
+		if (*src != '\0')
+		{
+			*dest = *src;
+			src++;
+			dest++;
+		}
 
-		*dest = *src;
-		dest++;
-		src++;
+		else
+		{
+			*dest = '\0';
+			dest++;
+		}
+
 	}
-
-	*dest = '\0';
 
 	return (str);
 }
