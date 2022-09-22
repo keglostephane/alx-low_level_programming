@@ -19,12 +19,12 @@ int _strcmp(char *s1, char *s2)
 
 	while ((*s1 != '\0') && (*s2 != '\0'))
 	{
-		if (*s1 > *s2)
+		if ((int)*s1 > (int)*s2)
 		{
 			i = 15;
 			return (i);
 		}
-		else if (*s1 < *s2)
+		else if ((int)*s1 < (int)*s2)
 		{
 			i = -15;
 			return (i);
