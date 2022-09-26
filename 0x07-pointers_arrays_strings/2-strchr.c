@@ -29,5 +29,11 @@ char *_strchr(char *s, char c)
 		s++;
 	}
 
+	if (*s == '\0')
+	{
+		str = s;
+		return (str);
+	}
+
 	return (str);
 }
