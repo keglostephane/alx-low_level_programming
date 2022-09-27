@@ -35,9 +35,12 @@ unsigned int _strspn(char *s, char *accept)
 	}
 
 	if (c != 0)
+	{
 		c++;
+		return (c);
+	}
 
-	return (c);
+	return (0);
 }
 
 
