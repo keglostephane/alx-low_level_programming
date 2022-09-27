@@ -14,33 +14,31 @@ unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int c = 0;
 
-	char *str = s;
+	char *str = accept;
 
-	while (*accept != '\0')
+	while (*s != '\0')
+
 	{
-		while (*s != '\0')
+		accept = str;
+
+		while (*accept != '\0')
 		{
+
 			if (*accept == *s)
 			{
 				c++;
 				break;
 			}
 
-			s++;
+			accept++;
 		}
 
-		accept++;
+		if (*accept == '\0')
+			break;
 
-		s = str;
+		s++;
 	}
 
-	if (c != 0)
-	{
-		c++;
-		return (c);
-	}
+	return (c);
 
-	return (0);
 }
-
-
