@@ -30,15 +30,15 @@ char *_strstr(char *haystack, char *needle)
 					str = haystack + i;
 
 				match++;
-				break;
 			}
 
 			else
 			{
 				match = 0;
 				str = 0;
-				break;
 			}
+
+			break;
 
 		}
 
