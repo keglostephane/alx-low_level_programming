@@ -17,7 +17,7 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	char *str = NULL;
+	char *str = 0;
 
 	int i, j, match = 0;
 
@@ -31,6 +31,11 @@ char *_strstr(char *haystack, char *needle)
 					str = haystack + i;
 
 				match++;
+			}
+			else
+			{
+				str = 0;
+				match = 0;
 			}
 
 			break;
