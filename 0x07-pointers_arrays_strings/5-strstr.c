@@ -17,7 +17,7 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	char *str = 0;
+	char *str;
 
 	int i, j, match = 0;
 
@@ -34,7 +34,7 @@ char *_strstr(char *haystack, char *needle)
 			}
 			else
 			{
-				str = 0;
+				str = NULL;
 				match = 0;
 			}
 
