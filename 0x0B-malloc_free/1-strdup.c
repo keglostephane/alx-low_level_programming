@@ -18,7 +18,7 @@ char *_strdup(char *str)
 
 	int s, i = 0;
 
-	if (str[0] == '\0')
+	if (*str == '\0')
 		return (NULL);
 
 	for (i = 0; str[i] != '\0'; i++)
