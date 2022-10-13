@@ -1,3 +1,4 @@
+#include <stdlib.h>
 
 /**
  * print_name - prints a name
@@ -13,6 +14,9 @@ void print_name(char *name, void (*f)(char *))
 	void (*fptr)(char *);
 
 	fptr = f;
+
+	if (name == NULL)
+		return;
 
 	fptr(name);
 }
