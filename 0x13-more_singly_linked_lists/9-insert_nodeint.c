@@ -94,6 +94,12 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		node->next = *head;
 		*head = node;
 	}
+	else if (idx == nb - 1)
+	{
+		prev_node = get_nodeint_at_index(*head, nb - 1);
+		node->next = NULL;
+		prev_node->next = node;
+	}
 	else
 	{
 		prev_node = get_nodeint_at_index(*head, idx - 1);
