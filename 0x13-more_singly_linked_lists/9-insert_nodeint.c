@@ -78,14 +78,13 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	unsigned int nb;
 	listint_t *node, *prev_node;
 
-	nb =  listint_len(*head);
-
-	if (idx >= nb || head == NULL)
+	if (*head == NULL)
 		return (NULL);
 
+	nb =  listint_len(*head);
 	node = malloc(sizeof(listint_t));
 
-	if (node == NULL || *head == NULL)
+	if (node == NULL || idx >= nb)
 		return (NULL);
 
 	node->n = n;
