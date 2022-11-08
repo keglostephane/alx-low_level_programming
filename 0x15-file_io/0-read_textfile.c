@@ -20,7 +20,6 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
 	ssize_t rc, wc;
-	size_t count;
 	char *buffer;
 
 	if (filename == NULL)
@@ -30,32 +29,26 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (fd == -1)
 		return (0);
 
-	buffer = malloc(sizeof(char) * 1024);
+	buffer = malloc(sizeof(char) * letters);
 	if (buffer == NULL)
 		return (0);
 
-	count = letters;
-	while (count != 0)
+	rc = read(fd, buffer, letters);
+	if (rc == -1)
 	{
-		rc = read(fd, buffer, count);
-		if (rc == -1)
-		{
-			free(buffer);
-			return (0);
-		}
-		if (rc == 0)
-			break;
-
-		wc = write(STDIN_FILENO, buffer, rc);
-		if (wc == -1 || wc != rc)
-		{
-			free(buffer);
-			return (0);
-		}
-
-		count = count - rc;
+		free(buffer);
+		return (0);
 	}
+
 	close(fd);
+
+	wc = write(STDIN_FILENO, buffer, rc);
+	if (wc == -1 || wc != rc)
+	{
+		free(buffer);
+		return (0);
+	}
+
 	free(buffer);
 	return (wc);
 }
