@@ -12,6 +12,6 @@ int main(void)
 	char quote[] = "and that piece of art is useful\" - Dora Korpar, \
 2015-10-19\n";
 
-	write(1, quote, strlen(quote) + 1);
+	write(1, quote, strlen(quote));
 	return (1);
 }
