@@ -12,18 +12,14 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i, j, ls, ld;
+	int i, j, ls;
 	char *str = dest;
 
 	ls = 0;
 	while (src[ls] != '\0')
 		ls++;
 
-	ld = 0;
-	while (dest[ld] != '\0')
-		ld++;
-
-	for (i = ld, j = 0; i < ls + ld && j < ls; i++, j++)
+	for (i = 0, j = 0; j < ls; i++, j++)
 		dest[i] = src[j];
 
 	return (str);
