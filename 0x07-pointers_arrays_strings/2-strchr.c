@@ -21,7 +21,7 @@ char *_strchr(char *s, char c)
 	while (s[ls] != '\0')
 		ls++;
 
-	for (i = 0; i < ls; i++)
+	for (i = 0; i <= ls; i++)
 		if (s[i] == c)
 			return (s + i);
 
