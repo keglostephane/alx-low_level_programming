@@ -14,6 +14,9 @@ char *_strchr(char *s, char c)
 {
 	unsigned int i, ls;
 
+	if (s == NULL)
+		return (s);
+
 	ls = 0;
 	while (s[ls] != '\0')
 		ls++;
