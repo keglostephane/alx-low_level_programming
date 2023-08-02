@@ -18,7 +18,7 @@ int guess_root(int g, int n)
 	if (g == n / 2)
 		return (-1);
 
-	return (guess_root(g + 1, n));
+	return (guess_root(++g, n));
 }
 /**
  * _sqrt_recursion - returns the natural square root of a number
