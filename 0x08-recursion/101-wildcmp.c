@@ -33,12 +33,11 @@ int skip_char(char *s, char c)
  */
 int is_same_string(char *s1, char *s2)
 {
+	if (*s2 == '*')
+		return (is_same_string((skip_char(s1, *(s2 + 1)) + s1), s2 + 1));
 
 	if (*s1 == '\0')
 		return (1);
-
-	if (*s2 == '*')
-		return (is_same_string((skip_char(s1, *(s2 + 1)) + s1), s2 + 1));
 
 	if (*s1 != *s2)
 		return (0);
