@@ -8,7 +8,7 @@
  *
  * @argv: list of arguments
  *
- * Return: 0 Always success
+ * Return: 0 in success, 1 if number of arguments is incorrect
  *
  */
 int main(int argc, char **argv)
