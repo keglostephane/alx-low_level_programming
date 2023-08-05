@@ -18,8 +18,8 @@ int main(int argc, char **argv)
 
 	for (i = 1; i < argc; i++)
 	{
-		if (strtol(argv[i], NULL, 10))
-			sum += strtol(argv[i], NULL, 10);
+		if (atoi(argv[i]) || *argv[i] == '0')
+			sum += atoi(argv[i]);
 		else
 		{
 			printf("Error\n");
