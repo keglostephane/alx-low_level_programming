@@ -42,10 +42,10 @@ char *str_concat(char *s1, char *s2)
 	char *ptr;
 
 	i = !(_strlen(s1)) ? 0 : _strlen(s1);
-	j = !(_strlen(s2)) ? 1 : _strlen(s2);
+	j = !(_strlen(s2)) ? 0 : _strlen(s2);
 	l = 0;
 
-	ptr = malloc(sizeof(char) * (i + j));
+	ptr = malloc(sizeof(char) * (i + j + 1));
 
 	if (!ptr)
 		return (NULL);
