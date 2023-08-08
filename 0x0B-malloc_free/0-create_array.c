@@ -9,13 +9,16 @@
  * @c: character to fill the array with
  *
  * Return: a dynamically allocated pointer to the array,
- * otherwise if malloc fails return NULL
+ * otherwise returns NULL if malloc fails or size equals 0
  *
  */
 char *create_array(unsigned int size, char c)
 {
 	char *ptr;
 	unsigned int i;
+
+	if (!size)
+		return (NULL);
 
 	ptr = malloc(sizeof(int) * size);
 
