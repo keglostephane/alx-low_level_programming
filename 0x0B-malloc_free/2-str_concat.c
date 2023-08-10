@@ -50,23 +50,15 @@ char *str_concat(char *s1, char *s2)
 	if (!ptr)
 		return (NULL);
 
-	for (l = 0; l < (i + j); l++)
-	{
-		if (s1)
-			for (k = 0; k < i; k++, l++)
-				ptr[l] = s1[k];
+	if (s1)
+		for (k = 0; k < i; k++, l++)
+			ptr[l] = s1[k];
 
-		if (s2)
-			for (k = 0; k < j; k++, l++)
-				ptr[l] = s2[k];
+	if (s2)
+		for (k = 0; k < j; k++, l++)
+			ptr[l] = s2[k];
 
-		ptr[l] = '\0';
-
-		break;
-	}
-
-	if (l == 0)
-		ptr[l] = '\0';
+	ptr[l] = '\0';
 
 	return (ptr);
 }
