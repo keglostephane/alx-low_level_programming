@@ -57,8 +57,14 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 			ptr[k] = s1[i];
 
 	if (s2)
-		for (j = 0; j < n && j < ls2; j++, k++)
-			ptr[k] = s2[j];
+	{
+		if (n < ls2)
+			for (j = 0; j < n; j++, k++)
+				ptr[k] = s2[j];
+		else
+			for (j = 0; s2[j] != '\0'; j++, k++)
+				ptr[k] = s2[j];
+	}
 
 	ptr[k] = '\0';
 
