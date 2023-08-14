@@ -38,12 +38,12 @@ dog_t *new_dog(char *name, float age, char *owner)
 	unsigned int i;
 	dog_t *dog;
 
+	if (!age && !owner)
+		return (NULL);
+
 	dog = malloc(sizeof(dog_t));
 
 	if (!dog)
-		return (NULL);
-
-	if (!age && !owner)
 		return (NULL);
 
 	dog->name = malloc(sizeof(char) * (_strlen(name) + 1));
