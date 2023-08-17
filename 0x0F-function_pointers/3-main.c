@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 {
 	int a, b;
 	char *operator;
-	int (*funct)(int, int);
 	int result;
 
 	if (argc != 4)
@@ -36,15 +35,13 @@ int main(int argc, char **argv)
 	b = atoi(argv[3]);
 	operator = argv[2];
 
-	funct = get_op_func(operator);
-
-	if (funct == NULL || *(operator + 1) != '\0')
+	if (!get_op_func(operator) || *(operator + 1) != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
 
-	result = funct(a, b);
+	result = (get_op_func(operator))(a, b);
 
 	printf("%d\n", result);
 
