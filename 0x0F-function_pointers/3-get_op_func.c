@@ -7,10 +7,6 @@
  *
  * @s: opcode of the operation to perform
  *
- * @a: first integer
- *
- * @b: second integer
- *
  * Description: performs operation on two integers according to
  * a specified opcode
  *
