@@ -34,23 +34,15 @@ int main(int argc, char **argv)
 
 	a = atoi(argv[1]);
 	b = atoi(argv[3]);
-	op = *(argv[2]);
+	op = argv[2];
 
-	if (op !=  '+' && op != '-' && op != '*' &&
-	    op != '/' && op != '%')
+	funct = get_op_func(op);
+
+	if (funct == NULL || *(op + 1) != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
-
-	if ((op == '/' || op == '%')
-	    && (b == 0))
-	{
-		printf("Error\n");
-		exit(100);
-	}
-
-	funct = get_op_func(argv[2]);
 
 	result = funct(a, b);
 
