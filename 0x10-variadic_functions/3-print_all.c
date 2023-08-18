@@ -78,12 +78,14 @@ void print_all(const char * const format, ...)
 			if (format[i] == chartof[j].c)
 			{
 				printf("%s", sep);
+				sep = ", ";
 				chartof[j].func(args);
-			}
-			j++;
-		}
 
-		sep = ", ";
+			}
+
+			j++;
+
+		}
 
 		i++;
 	}
