@@ -3,6 +3,14 @@
 
 #include <stdarg.h>
 
+/**
+ * struct fspecifiers - maps format specifiers to functions
+ *
+ * @c: format specifier
+ *
+ * @func: function mapped to a format specifer
+ *
+ */
 struct fspecifiers
 {
 	char c;
