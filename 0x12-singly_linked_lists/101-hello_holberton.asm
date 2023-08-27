@@ -2,7 +2,7 @@ global main			; Declare main as the entry point of the program
 extern printf			; printf function is in C library
 
 section .data
-	msg db "Hello, Holberton", 13, 10, 0 ; string to print with CR, LF
+	msg db "Hello, Holberton", 10, 0 ; string to print with CR, LF
 
 section .text
 main:
