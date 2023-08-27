@@ -1,16 +1,15 @@
-	global main
-	extern printf
-
-	section .text
-main:
-	push rbp
-	mov rbp, rsp
-
-	mov rdi, msg
-	call printf
-
-	leave
-	ret 0
+global main			; Declare main as the entry point of the program
+extern printf			; printf function is in C library
 
 section .data
-    msg     db  "Hello, Holberton", 13, 10, 0
+	msg db "Hello, Holberton", 13, 10, 0 ; string to print with CR, LF
+
+section .text
+main:
+	push rbp
+	mov rdi, msg
+	call printf
+	pop rbp
+
+	xor eax, eax   ; Set return value to 0
+	ret
