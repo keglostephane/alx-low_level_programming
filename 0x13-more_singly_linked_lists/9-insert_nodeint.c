@@ -67,7 +67,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	unsigned int i, len;
+	unsigned int len;
 	listint_t *new_node, *node, *prev_node;
 
 	len = listint_len(*head);
@@ -75,33 +75,33 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 
 	if (!new_node)
 		return (NULL);
-
 	new_node->n = n;
-
 	if (!len && idx)
+		return (NULL);
+	if (len && idx > len)
 		return (NULL);
 	if (!len && !idx)
 	{
 		new_node->next = NULL;
 		*head = new_node;
-		return (new_node);
 	}
-	if (len && !idx)
+	else if (len && !idx)
 	{
 		new_node->next = *head;
 		*head = new_node;
-		return (new_node);
 	}
-
-	for (i = 0; i < len; i++)
+	else if (len && idx == len)
 	{
-		if (idx == i)
-		{
-			prev_node = get_nodeint_at_index(*head, i - 1);
-			node = get_nodeint_at_index(*head, i);
-			prev_node->next = new_node;
-			new_node->next = node;
-		}
+		prev_node = get_nodeint_at_index(*head, len - 1);
+		prev_node->next = new_node;
+		new_node->next = NULL;
+	}
+	else if (len && idx < len)
+	{
+		prev_node = get_nodeint_at_index(*head, idx - 1);
+		node = get_nodeint_at_index(*head, idx);
+		prev_node->next = new_node;
+		new_node->next = node;
 	}
 	return (new_node);
 }
