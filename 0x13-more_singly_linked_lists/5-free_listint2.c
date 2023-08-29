@@ -14,15 +14,17 @@ void free_listint2(listint_t **head)
 	int i;
 	listint_t *curr_node, *next_node;
 
-	curr_node = *head;
-
-	for (i = 0; curr_node != NULL; i++)
+	if (!head)
 	{
-		next_node = curr_node->next;
-		free(curr_node);
-		curr_node = next_node;
-	}
+		curr_node = *head;
 
-	*head = NULL;
-	head = NULL;
+		for (i = 0; curr_node != NULL; i++)
+		{
+			next_node = curr_node->next;
+			free(curr_node);
+			curr_node = next_node;
+		}
+
+		*head = NULL;
+	}
 }
