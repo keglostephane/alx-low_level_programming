@@ -16,7 +16,7 @@ int pop_listint(listint_t **head)
 	int d;
 	listint_t *curr_node;
 
-	if (!head)
+	if (!*head)
 		return (0);
 
 	curr_node = *head;
