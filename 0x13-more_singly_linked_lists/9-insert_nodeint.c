@@ -62,7 +62,7 @@ listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
  *
  * Return: the address of the new node or NULL if it failed
  *
- * If it is not possoble to add the new node at index `idx`,
+ * If it is not possible to add the new node at index `idx`,
  * do not add the node and return NULL
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
@@ -78,13 +78,8 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 
 	new_node->n = n;
 
-	if (idx >= len || (!*head && idx > 0))
+	if (idx >= len || !*head)
 		return (NULL);
-	else if (!idx && !*head)
-	{
-		new_node->next = NULL;
-		*head = new_node;
-	}
 	else if (*head && !idx)
 	{
 		new_node->next = *head;
