@@ -18,7 +18,10 @@ size_t print_listint_safe(const listint_t *head)
 	unsigned int count, cycle;
 
 	if (!head)
+	{
+		return (0);
 		exit(98);
+	}
 
 	slow = head;
 	fast = head;
@@ -42,10 +45,11 @@ size_t print_listint_safe(const listint_t *head)
 		}
 		else
 		{
-			if (slow == fast)
-				break;
 			slow = slow->next;
 			fast = fast->next;
+			if (slow == fast)
+				break;
+
 		}
 	}
 
