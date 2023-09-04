@@ -14,8 +14,8 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow, *fast;
-	unsigned int count, cycle;
+	const listint_t *slow = head, *fast = head;
+	unsigned int count = 0, cycle = 0;
 
 	if (!head)
 	{
@@ -23,10 +23,6 @@ size_t print_listint_safe(const listint_t *head)
 		exit(98);
 	}
 
-	slow = head;
-	fast = head;
-	cycle = 0;
-	count = 0;
 	while (slow != NULL)
 	{
 		printf("[%p] %d\n", (void *)slow, slow->n);
@@ -48,8 +44,10 @@ size_t print_listint_safe(const listint_t *head)
 			slow = slow->next;
 			fast = fast->next;
 			if (slow == fast)
+			{
+				printf("-> [%p] %d\n", (void *)fast, fast->n);
 				break;
-
+			}
 		}
 	}
 
