@@ -30,6 +30,8 @@ size_t print_listint_safe(const listint_t *head)
 
 		if (!cycle)
 		{
+			if (slow == slow->next)
+				break;
 			slow = slow->next;
 			if (fast && fast->next)
 				fast = fast->next->next;
