@@ -89,7 +89,7 @@ int main(int argc, char **argv)
 			argv[1]);
 		exit(98);
 	}
-	/* check if the destination exists and be written otherwise */
+	/* check if the destination exists and can be written otherwise */
 	/* create a new file with permission 0664 */
 	if (open(argv[2], O_WRONLY) == -1 && errno == ENOENT)
 		fd2 = open(argv[2], O_WRONLY | O_CREAT,
