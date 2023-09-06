@@ -39,6 +39,7 @@ void cpy_file(int fd1, int fd2, const char *filename1, const char *filename2)
 	ssize_t bytes, written;
 	char *buffer[1024];
 
+	/* read and write to destination until we reach end of file of source */
 	while (1)
 	{
 		bytes = read(fd1, buffer, 1024);
@@ -81,20 +82,25 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
+	/* check if the source file exists and can be read */
 	if (open(argv[1], O_RDONLY) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
 			argv[1]);
 		exit(98);
 	}
+	/* check if the destination exists and be written otherwise */
+	/* create a new file with permission 0664 */
 	if (open(argv[2], O_WRONLY) == -1 && errno == ENOENT)
 		fd2 = open(argv[2], O_WRONLY | O_CREAT,
 			   S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	/* destination file exists but doesn't have write permission */
 	else if (open(argv[2], O_WRONLY) == -1 && errno == EACCES)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
+	/* destination file exists and have write permission */
 	else if (open(argv[2], O_WRONLY) != -1)
 		fd2 = open(argv[2], O_WRONLY | O_TRUNC);
 
