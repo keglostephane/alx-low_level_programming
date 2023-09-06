@@ -60,12 +60,9 @@ int main(int argc, char **argv)
 		fd2 = open(argv[2], O_WRONLY | O_TRUNC);
 	fd1 = open(argv[1], O_RDONLY);
 	while ((bytes = read(fd1, buffer, 1024)))
-	{
-		if (bytes == -1)
-			return (-1);
-		if (write(fd2, buffer, bytes) == -1)
-			return (-1);
-	}
+		write(fd2, buffer, bytes);
+	if (bytes == -1)
+		exit(-1);
 	if (!close_fd(fd1))
 		exit(100);
 	if (!close_fd(fd2))
