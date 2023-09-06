@@ -21,6 +21,48 @@ int close_fd(int fd)
 
 	return (1);
 }
+
+/**
+ * cpy_file - copy content of a file to another one
+ *
+ * @fd1: source file
+ *
+ * @fd2: destination file
+ *
+ * @filename1: source filename
+ *
+ * @filename2: destination filename
+ *
+ */
+void cpy_file(int fd1, int fd2, const char *filename1, const char *filename2)
+{
+	ssize_t bytes, written;
+	char *buffer[1024];
+
+	while (1)
+	{
+		bytes = read(fd1, buffer, 1024);
+
+		if (bytes == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n", filename1);
+			exit(98);
+		}
+		if (!bytes)
+			break;
+
+		written = write(fd2, buffer, bytes);
+
+		if (written == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to %s\n", filename2);
+			exit(99);
+		}
+	}
+}
+
 /**
  * main - copies content of file to another file
  *
@@ -33,16 +75,13 @@ int close_fd(int fd)
 int main(int argc, char **argv)
 {
 	int fd1, fd2;
-	ssize_t bytes;
-	char *buffer[1024];
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	if (open(argv[1], O_RDONLY) == -1 &&
-	    (errno == ENOENT || errno == EACCES))
+	if (open(argv[1], O_RDONLY) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
 			argv[1]);
@@ -58,14 +97,14 @@ int main(int argc, char **argv)
 	}
 	else if (open(argv[2], O_WRONLY) != -1)
 		fd2 = open(argv[2], O_WRONLY | O_TRUNC);
+
 	fd1 = open(argv[1], O_RDONLY);
-	while ((bytes = read(fd1, buffer, 1024)))
-		write(fd2, buffer, bytes);
-	if (bytes == -1)
-		exit(-1);
+	cpy_file(fd1, fd2, argv[1], argv[2]);
+
 	if (!close_fd(fd1))
 		exit(100);
 	if (!close_fd(fd2))
 		exit(100);
+
 	exit(EXIT_SUCCESS);
 }
