@@ -5,6 +5,23 @@
 #include <errno.h>
 
 /**
+ * close_fd - close a file descriptor
+ *
+ * @fd: file descriptor
+ *
+ * Return: 1 if closed successfully, 0 otherwise
+ */
+int close_fd(int fd)
+{
+	if (close(fd))
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		return (0);
+	}
+
+	return (1);
+}
+/**
  * main - copies content of file to another file
  *
  * @argc: number of arguments
@@ -43,16 +60,15 @@ int main(int argc, char **argv)
 		fd2 = open(argv[2], O_WRONLY | O_TRUNC);
 	fd1 = open(argv[1], O_RDONLY);
 	while ((bytes = read(fd1, buffer, 1024)))
-		write(fd2, buffer, bytes);
-	if (close(fd1))
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
-		exit(100);
+		if (bytes == -1)
+			exit(98);
+		if (write(fd2, buffer, bytes) == -1)
+			exit(99);
 	}
-	if (close(fd2))
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
+	if (!close_fd(fd1))
 		exit(100);
-	}
+	if (!close_fd(fd2))
+		exit(100);
 	exit(EXIT_SUCCESS);
 }
