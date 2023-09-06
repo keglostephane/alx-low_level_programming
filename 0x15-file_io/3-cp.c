@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 		fd2 = open(argv[2], O_WRONLY | O_TRUNC);
 	fd1 = open(argv[1], O_RDONLY);
 	while ((bytes = read(fd1, buffer, 1024)))
-		write(fd2, buffer, 1024);
+		write(fd2, buffer, bytes);
 	if (close(fd1))
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
