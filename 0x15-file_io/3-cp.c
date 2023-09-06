@@ -62,9 +62,9 @@ int main(int argc, char **argv)
 	while ((bytes = read(fd1, buffer, 1024)))
 	{
 		if (bytes == -1)
-			exit(98);
+			return (-1);
 		if (write(fd2, buffer, bytes) == -1)
-			exit(99);
+			return (-1);
 	}
 	if (!close_fd(fd1))
 		exit(100);
