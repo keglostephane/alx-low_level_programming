@@ -13,20 +13,22 @@ void hash_table_print(const hash_table_t *ht)
 	unsigned long int i;
 	int found = 0;	/* detect if a key/value has been found */
 
-	printf("{");
-	for (i = 0;  ht && i < ht->size; i++)
+	if (ht)
 	{
-		head = ht->array[i];
-
-		while (head)
+		printf("{");
+		for (i = 0;  i < ht->size; i++)
 		{
-			if (found)
-				printf(", ");
-			printf("\'%s\': \'%s\'", head->key, head->value);
+			head = ht->array[i];
 
-			found = 1;
-			head = head->next;
+			while (head)
+			{
+				if (found)
+					printf(", ");
+				printf("\'%s\': \'%s\'", head->key, head->value);
+				found = 1;
+				head = head->next;
+			}
 		}
+		printf("}\n");
 	}
-	printf("}\n");
 }
