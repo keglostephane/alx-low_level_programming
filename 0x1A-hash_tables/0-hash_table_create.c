@@ -14,7 +14,6 @@ hash_table_t *hash_table_create(unsigned long int size)
 	hash_table_t *hash_map;
 	unsigned long int i;
 
-	(void) i;
 	if (!size)
 		return (NULL);
 
@@ -32,7 +31,9 @@ hash_table_t *hash_table_create(unsigned long int size)
 	}
 
 	hash_map->size = size;
-	hash_map->array = NULL;
+
+	for (i = 0; i < size; i++)
+		hash_map->array[i] = NULL;
 
 	return (hash_map);
 }
