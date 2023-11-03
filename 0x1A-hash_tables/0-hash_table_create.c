@@ -13,9 +13,9 @@ hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *hash_map;
 
-	hash_map = malloc(sizeof(hash_table_t) + sizeof(hash_node_t) * size);
+	hash_map = malloc(sizeof(hash_table_t) + sizeof(hash_node_t));
 
-	if (!hash_map || !size)
+	if (!hash_map)
 		return (NULL);
 
 	return (hash_map);
