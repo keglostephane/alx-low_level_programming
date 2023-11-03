@@ -32,7 +32,24 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (!ht->array[index])
 		node->next = NULL;
 	else
-		node->next = ht->array[index];
+	{
+		/* check for an existing key */
+		while (ht->array[index] && strcmp(ht->array[index]->key, key))
+			ht->array[index] = ht->array[index]->next;
+
+		/* update value of an existing key */
+		if (ht->array[index])
+		{
+			ht->array[index]->value = strdup(value);
+			free(node->key);
+			free(node->value);
+			free(node);
+			return (1);
+		}
+		else
+			/* collision detected, add to the beginning */
+			node->next = ht->array[index];
+	}
 
 	ht->array[index] = node;
 	return (1);
