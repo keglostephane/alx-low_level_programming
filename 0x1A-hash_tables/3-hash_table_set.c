@@ -16,7 +16,7 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *node;
+	hash_node_t *node, *head;
 
 	if (!ht || !key || !*key || !value)
 		return (0);
@@ -26,31 +26,30 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	index = key_index((const unsigned char *)key, ht->size);
-	node->key = strdup(key);
-	node->value = strdup(value);
 
 	if (!ht->array[index])
 		node->next = NULL;
 	else
 	{
+		head = ht->array[index];
 		/* check for an existing key */
-		while (ht->array[index] && strcmp(ht->array[index]->key, key))
-			ht->array[index] = ht->array[index]->next;
-
-		/* update value of an existing key */
-		if (ht->array[index])
+		while (ht->array[index])
 		{
-			ht->array[index]->value = strdup(value);
-			free(node->key);
-			free(node->value);
-			free(node);
-			return (1);
+			/* existing key found, update the value */
+			if (strcmp(ht->array[index]->key, key) == 0)
+			{
+				ht->array[index]->value = strdup(value);
+				free(node);
+				return (1);
+			}
+			ht->array[index] = ht->array[index]->next;
 		}
-		else
-			/* collision detected, add to the beginning */
-			node->next = ht->array[index];
+		/* collision detected, add to the beginning */
+		node->next = head;
 	}
 
+	node->key = strdup(key);
+	node->value = strdup(value);
 	ht->array[index] = node;
 	return (1);
 }
