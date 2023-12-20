@@ -1,0 +1,12 @@
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+
+# build the executable from objects files
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# compile source files to object files
+%.o : %.c
+	$(CC) -c -o $@ $<
