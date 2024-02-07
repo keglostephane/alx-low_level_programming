@@ -26,16 +26,16 @@ int binary_search(int *array, size_t size, int value)
 		printf("Searching in array: ");
 
 		for (i = left; i <= right; i++)
-			printf("%lu%s", i, i != right ? ", " : "\n");
+			printf("%d%s", array[i], i != right ? ", " : "\n");
 
 		middle = (left + right) / 2;
 
-		if (value < (int)middle)
+		if (value < array[(int)middle])
 			right = middle - 1;
-		else if (value > (int)middle)
+		else if (value > array[(int)middle])
 			left = middle + 1;
 		else
-			return (left);
+			return (middle);
 	}
 
 	return (-1);
